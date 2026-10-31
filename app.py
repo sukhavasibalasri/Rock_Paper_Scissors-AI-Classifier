@@ -7,6 +7,19 @@ Original file is located at
     https://colab.research.google.com/drive/1AYaynDrUN3olwbVS_d6vnPwbEpXEhjiG
 """
 
+import os
+import gdown
+import streamlit as st
+
+# Automatically download RPStest.h5 from Google Drive if it isn't already present
+file_id = '1Q649qukcCgjJxF4tWEYdeamDCRcD5Bpd'
+model_path = 'RPStest.h5'
+
+if not os.path.exists(model_path):
+  with st.spinner('Downloading model from Google Drive... Please wait.'):
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, model_path, quiet=False)
+
 import streamlit as st
 import tensorflow as tf
 from tensorflow.keras.models import load_model
